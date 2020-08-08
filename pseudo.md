@@ -1,0 +1,10 @@
+-Main page with description of the objective and a start button
+    -When start button is clicked a timer will start counting down(event listener)
+    -Timer will count down from 5 minutes
+-First question is presented to the user, once answered another question will appear
+    -10 questions long
+    -10 points per question
+-If questions are answered incorrectly then time is subtracted from the timer
+    -User will lose 10 seconds with each incorrect answer
+-Game over when time = 0 OR the user has answered all of the questions
+    -At game over the user will save intials and their score
