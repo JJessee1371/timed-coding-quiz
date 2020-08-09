@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 h1 {
     font-family: 'Russo One', sans-serif;
     text-align: center;
@@ -6,3 +10,21 @@ h1 {
     font-family: 'Russo One', sans-serif;
 }
 
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid black;
+    text-align: center;
+    font-family: 'Russo One', sans-serif;
+    width: 15em;
+    margin: auto;
+}
+
+#minutes {
+    font-size: 5em;
+}
+
+#seconds {
+    font-size: 2em;
+}
