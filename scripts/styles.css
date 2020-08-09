@@ -19,12 +19,17 @@ h1 {
     font-family: 'Russo One', sans-serif;
     width: 15em;
     margin: auto;
+    border-radius: 25px;
+    background-color: #070000;
+    
 }
 
 #minutes {
     font-size: 5em;
+    color: rgb(23, 243, 23);
 }
 
 #seconds {
     font-size: 2em;
+    color: rgb(23, 243, 23);
 }
