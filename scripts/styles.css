@@ -24,12 +24,12 @@ h1 {
     
 }
 
-#minutes-display {
+#minutes {
     font-size: 5em;
     color: rgb(23, 243, 23);
 }
 
-#seconds-display {
+#seconds {
     font-size: 2em;
     color: rgb(23, 243, 23);
 }
