@@ -4,7 +4,7 @@ let secondsDisplay = document.getElementById('seconds-display');
 let startButton = document.getElementById('begin');
 
 
-//Setting questions that will be placed in local storage
+//Setting variables for each question included in the quiz
 const question1 = {
     question: "What does API stand for?",
     a: "Application Personal Interface",
@@ -85,11 +85,20 @@ const question10 = {
     d: "Breakpoint"
 };
 
+//Array for local storage keys
+const keysArray = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10"];
+
+//Array containing each question
+const questionArray = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
+
+//Placing each question into the local storage
+for (i = 0; i < questionArray.length; i++) {
+localStorage.setItem(keysArray[i], JSON.stringify(questionArray[i]));
+};
 
 
 
-
-
+//Function starts timer when the start button is clicked
 function startTimer() {
     let totalMinutes = 5;
     let totalSeconds = totalMinutes * 60;
