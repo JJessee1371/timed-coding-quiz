@@ -100,11 +100,23 @@ localStorage.setItem(keysArray[i], JSON.stringify(questionArray[i]));
 
 
 
-//Function starts timer when the start button is clicked
+//Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
-    //Removes the landing page content and inserts the first question
+    //Removes the landing page content
     instructions.remove();
     startButton.remove();
+    //Creates elements that will house the questions
+    let header = document.createElement("h3");
+    document.body.appendChild(header);
+    let list = document.createElement("ol");
+    header.appendChild(list);
+    for (i = 0; i < 4; i++) {
+        let listItem = document.createElement("li");
+        list.appendChild(listItem);
+        let button = document.createElement("button");
+        listItem.appendChild(button);
+    };
+
 
 
     let totalMinutes = 5;
