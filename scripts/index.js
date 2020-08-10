@@ -1,7 +1,9 @@
 //Defining varaibles and retrieving desired HTML elements
-let minutesDisplay = document.getElementById('minutes-display');
-let secondsDisplay = document.getElementById('seconds-display');
-let startButton = document.getElementById('begin');
+let headerMain = document.getElementById("main-header");
+let instructions = document.getElementById("instructions");
+let minutesDisplay = document.getElementById("minutes-display");
+let secondsDisplay = document.getElementById("seconds-display");
+let startButton = document.getElementById("begin");
 
 
 //Setting variables for each question included in the quiz
@@ -100,6 +102,11 @@ localStorage.setItem(keysArray[i], JSON.stringify(questionArray[i]));
 
 //Function starts timer when the start button is clicked
 function startTimer() {
+    //Removes the landing page content and inserts the first question
+    instructions.remove();
+    startButton.remove();
+
+
     let totalMinutes = 5;
     let totalSeconds = totalMinutes * 60;
 
@@ -119,6 +126,6 @@ function startTimer() {
 
 
 
-startButton.addEventListener('click', startTimer);
+startButton.addEventListener("click", startTimer);
 
     
