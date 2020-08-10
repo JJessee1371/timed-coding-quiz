@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #9e9d9d;
+}
+
 h1 {
     font-family: 'Russo One', sans-serif;
     text-align: center;
@@ -32,4 +36,12 @@ h1 {
 #seconds {
     font-size: 2em;
     color: rgb(23, 243, 23);
+}
+
+.visible {
+    visibility: visible;
+}
+
+.hidden {
+    visibility: hidden;
 }
