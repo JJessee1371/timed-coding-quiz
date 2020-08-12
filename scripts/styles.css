@@ -28,20 +28,12 @@ h1 {
     
 }
 
-#minutes {
+#minutes-display {
     font-size: 5em;
     color: rgb(23, 243, 23);
 }
 
-#seconds {
+#seconds-display {
     font-size: 2em;
     color: rgb(23, 243, 23);
-}
-
-.visible {
-    visibility: visible;
-}
-
-.hidden {
-    visibility: hidden;
 }

@@ -91,33 +91,31 @@ let question10 = {
 
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
+
     //Removes the landing page content
     instructions.remove();
     startButton.remove();
 
-    let hiddenItems = document.getElementsByClassName("hidden");
-    for (i = 0; i < hiddenItems.length; i++) {
-    hiddenItems[i].setAttribute("class", "visible");
-    };
-
-
 
     //Timer setup
-    let totalMinutes = 5;
-    let totalSeconds = totalMinutes * 60;
+    let totalMin = 5;
+    let totalSec = totalMin * 60;
     let secondsElapsed = 0;
 
-    const interval = setInterval( function() {
+    interval = setInterval(function() {
         secondsElapsed++;
-        totalSeconds--;
-        MinutesDisplay.textContent = Math.floor((totalSeconds - secondsElapsed) / 60);
+        let remainingSec = totalSec - secondsElapsed;
+        let remainingMin = Math.floor(remainingSec / 60);
+        let remainderSeconds = remainingSec % 60;
 
+        minutesDisplay.textContent = remainingMin;
 
-        if (totalSeconds <= 0) {
-            clearInterval(interval);
+        if (remainderSeconds < 10) {
+            secondsDisplay.textContent = "0" + remainderSeconds;
+        } else {
+            secondsDisplay.textContent = remainderSeconds;
         };
     }, 1000);
-
 };
 
 
