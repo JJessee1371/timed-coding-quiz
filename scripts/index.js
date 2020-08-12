@@ -19,11 +19,11 @@ let question1 = {
 };
 
 let question2 = {
-    question: "Which of the following is NOT included in the CSS box model?",
-    a: "Margin",
-    b: "Border radius",
-    c: "Padding",
-    d: "Border"
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: ""
 };
 
 let question3 = {
@@ -59,11 +59,11 @@ let question6 = {
 };
 
 let question7 = {
-    question: "Which git command will create a new file?",
-    a: "pwd",
-    b: "touch",
-    c: "mkdir",
-    d: "rm -rf"
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: ""
 };
 
 let question8 = {
@@ -83,13 +83,14 @@ let question9 = {
 };
 
 let question10 = {
-    question: "When the design of a page changes at a specified device width, that is called a:",
-    a: "Trigger point",
-    b: "Switch point",
-    c: "Viewport",
-    d: "Breakpoint"
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: ""
 };
 
+const questionArr = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
@@ -99,12 +100,13 @@ function startTimer() {
     startButton.remove();
 
     //Sets the first question of the quiz and the attribute of correct answer
-    question.textContent = question1.question;
-    item1.textContent = question1.a;
-    item2.textContent = question1.b;
-    item3.textContent = question1.c;
-    item4.textContent = question1.d;
-    item4.setAttribute("class", "correct");
+    // question.textContent = question1.question;
+    // item1.textContent = question1.a;
+    // item2.textContent = question1.b;
+    // item3.textContent = question1.c;
+    // item4.textContent = question1.d;
+    // item4.setAttribute("class", "correct");
+    pullNext();
 
     //Timer setup
     let totalMin = 5;
@@ -131,9 +133,30 @@ function userGuess(event) {
     if (event.target.matches(".correct")) {
         points++;
         console.log("Points: " + points);
+
+        arrItems = [item1, item2, item3, item4];
+        for (i = 0; i < arrItems.length; i++) {
+            arrItems[i].removeAttribute("class");
+        };
+
         pullNext();
     }
-}
+    else {
+        for (i = 0; i < arrItems.length; i++) {
+            arrItems[i].removeAttribute("class");
+    };
+};
+
+function pullNext() {
+    //Sets the content to the new question from an array
+    question.textContent =questionArr[i].question;
+    item1.textContent = questionArr[i].a;
+    item2.textContent = questionArr[i].b;
+    item3.textContent = questionArr[i].c;
+    item4.textContent = questionArr[i].d;
+
+    //Correct answers are set for the given question
+};
 
 
 //Event listeners
