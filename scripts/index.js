@@ -1,9 +1,11 @@
 //Defining varaibles and retrieving desired HTML elements
-let headerMain = document.getElementById("main-header");
-let instructions = document.getElementById("instructions");
+const headerMain = document.getElementById("main-header");
+const instructions = document.getElementById("instructions");
 let minutesDisplay = document.getElementById("minutes-display");
 let secondsDisplay = document.getElementById("seconds-display");
-let startButton = document.getElementById("begin");
+const startButton = document.getElementById("begin");
+const userOptions = document.getElementById("answer-list");
+let points = 0;
 
 console.log("Sanity Check");
 
@@ -125,8 +127,17 @@ function startTimer() {
     }, 1000);
 };
 
+function userGuess(event) {
+    if (event.target.matches(".correct")) {
+        points++;
+        console.log("Points: " + points);
+        pullNext();
+    }
+}
+
 
 //Event listeners
 startButton.addEventListener("click", startTimer);
+userOptions.addEventListener("click", userGuess);
 
     
