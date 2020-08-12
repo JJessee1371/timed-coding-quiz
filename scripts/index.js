@@ -19,18 +19,18 @@ let question1 = {
 };
 
 let question2 = {
-    question: "",
-    a: "",
-    b: "",
-    c: "",
-    d: ""
+    question: "To place an item in the local storage we use:",
+    a: "localStorage.setItem()",
+    b: "localStorage.storeItem()",
+    c: "localStorage.sendItem()",
+    d: "localStorage.pushItem()"
 };
 
 let question3 = {
     question: "Which of the following removes whitespace characters from a string?",
     a: "ParseInt()",
-    b: "CharAt()",
-    c: "Trim()",
+    b: "Trim()",
+    c: "CharAt()",
     d: "Push()"
 };
 
@@ -59,15 +59,15 @@ let question6 = {
 };
 
 let question7 = {
-    question: "",
-    a: "",
-    b: "",
-    c: "",
-    d: ""
+    question: "Choose the option that is NOT a JavaScript data type:",
+    a: "String",
+    b: "Null",
+    c: "Parameter",
+    d: "Undefined"
 };
 
 let question8 = {
-    question: "A function without a declared name is called a ____ function.",
+    question: "A function without a declared name is called a(n) ____ function.",
     a: "Blank declaration",
     b: "Anonymous",
     c: "Arrow",
@@ -83,11 +83,11 @@ let question9 = {
 };
 
 let question10 = {
-    question: "",
-    a: "",
-    b: "",
-    c: "",
-    d: ""
+    question: "Select the item that cannot be used to defind a variable",
+    a: "Set",
+    b: "Let",
+    c: "Const",
+    d: "Var"
 };
 
 const questionArr = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
@@ -156,6 +156,21 @@ function pullNext() {
     item4.textContent = questionArr[i].d;
 
     //Correct answers are set for the given question
+    if (question[i] == question2 || question[i] == question4 || question[i] == question9 || question[i] == question10) {
+        item1.setAttribute("class", "correct");
+    };
+
+    if (question[i] == question3 || question[i] == question8) {
+        item2.setAttribute("class", "correct");
+    };
+
+    if (question[i] == question6 || question[i] == question7) {
+        item3.setAttribute("class", "correct");
+    };
+
+    if (question[i] == question1 || question[i] == question5) {
+        item4.setAtttribute("class", "correct");
+    };
 };
 
 
