@@ -5,33 +5,34 @@ let minutesDisplay = document.getElementById("minutes-display");
 let secondsDisplay = document.getElementById("seconds-display");
 let startButton = document.getElementById("begin");
 
+console.log("Sanity Check");
 
 //Setting variables for each question included in the quiz
-const question1 = {
+let question1 = {
     question: "What does API stand for?",
     a: "Application Personal Interface",
     b: "Application Programming Interchange",
     c: "Automatic Programming Interface",
-    d: "Application Programming Interface",
+    d: "Application Programming Interface"
 };
 
-const question2 = {
+let question2 = {
     question: "Which of the following is NOT included in the CSS box model?",
     a: "Margin",
     b: "Border radius",
     c: "Padding",
-    d: "Border",
+    d: "Border"
 };
 
-const question3 = {
+let question3 = {
     question: "Which of the following removes whitespace characters from a string?",
     a: "ParseInt()",
     b: "CharAt()",
     c: "Trim()",
-    d: "Push()",
+    d: "Push()"
 };
 
-const question4 = {
+let question4 = {
     question: "Where should an external JavaScript page ideally be linked in the HTML document?",
     a: "After every other element within the <body> tag",
     b: "Within the <head> tag",
@@ -39,7 +40,7 @@ const question4 = {
     d: "Immediately following the opening <body> tag"
 };
 
-const question5 = {
+let question5 = {
     question: "What are the following examples of: href, src, style?",
     a: "Variables",
     b: "Arguments",
@@ -47,7 +48,7 @@ const question5 = {
     d: "Attributes"
 };
 
-const question6 = {
+let question6 = {
     question: "The first item in an array has an index of:",
     a: "[firstChild]",
     b: "[1]",
@@ -55,7 +56,7 @@ const question6 = {
     d: "[arr1]"
 };
 
-const question7 = {
+let question7 = {
     question: "Which git command will create a new file?",
     a: "pwd",
     b: "touch",
@@ -63,7 +64,7 @@ const question7 = {
     d: "rm -rf"
 };
 
-const question8 = {
+let question8 = {
     question: "A function without a declared name is called a ____ function.",
     a: "Blank declaration",
     b: "Anonymous",
@@ -71,7 +72,7 @@ const question8 = {
     d: "Empty"
 };
 
-const question9 = {
+let question9 = {
     question: "A confirm returns what data type?",
     a: "A Boolean",
     b: "A Number",
@@ -79,7 +80,7 @@ const question9 = {
     d: "An Object"
 };
 
-const question10 = {
+let question10 = {
     question: "When the design of a page changes at a specified device width, that is called a:",
     a: "Trigger point",
     b: "Switch point",
@@ -87,44 +88,29 @@ const question10 = {
     d: "Breakpoint"
 };
 
-//Array for local storage keys
-const keysArray = ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "q9", "q10"];
-
-//Array containing each question
-const questionArray = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
-
-//Placing each question into the local storage
-for (i = 0; i < questionArray.length; i++) {
-localStorage.setItem(keysArray[i], JSON.stringify(questionArray[i]));
-};
-
-
 
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
     //Removes the landing page content
     instructions.remove();
     startButton.remove();
-    //Creates elements that will house the questions
-    let header = document.createElement("h3");
-    document.body.appendChild(header);
-    let list = document.createElement("ol");
-    header.appendChild(list);
-    for (i = 0; i < 4; i++) {
-        let listItem = document.createElement("li");
-        list.appendChild(listItem);
-        let button = document.createElement("button");
-        listItem.appendChild(button);
+
+    let hiddenItems = document.getElementsByClassName("hidden");
+    for (i = 0; i < hiddenItems.length; i++) {
+    hiddenItems[i].setAttribute("class", "visible");
     };
 
 
 
+    //Timer setup
     let totalMinutes = 5;
     let totalSeconds = totalMinutes * 60;
+    let secondsElapsed = 0;
 
     const interval = setInterval( function() {
+        secondsElapsed++;
         totalSeconds--;
-        secondsDisplay.textContent = Math.floor[totalSeconds / 5];
+        MinutesDisplay.textContent = Math.floor((totalSeconds - secondsElapsed) / 60);
 
 
         if (totalSeconds <= 0) {
@@ -135,9 +121,7 @@ function startTimer() {
 };
 
 
-
-
-
+//Event listeners
 startButton.addEventListener("click", startTimer);
 
     
