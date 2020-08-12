@@ -96,6 +96,13 @@ function startTimer() {
     instructions.remove();
     startButton.remove();
 
+    //Sets the first question of the quiz and the attribute of correct answer
+    question.textContent = question1.question;
+    item1.textContent = question1.a;
+    item2.textContent = question1.b;
+    item3.textContent = question1.c;
+    item4.textContent = question1.d;
+    item4.setAttribute("class", "correct");
 
     //Timer setup
     let totalMin = 5;
