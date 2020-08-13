@@ -108,9 +108,9 @@ function startTimer() {
 
     interval = setInterval(function() {
         secondsElapsed++;
-        let remainingSec = totalSec - secondsElapsed;
+        let secondsLeft = totalSec - secondsElapsed;
         let remainingMin = Math.floor(remainingSec / 60);
-        let remainderSeconds = remainingSec % 60;
+        let remainderSeconds = secondsLeft % 60;
 
         minutesDisplay.textContent = remainingMin;
 
@@ -118,6 +118,11 @@ function startTimer() {
             secondsDisplay.textContent = "0" + remainderSeconds;
         } else {
             secondsDisplay.textContent = remainderSeconds;
+        };
+
+        if (secondsLeft <= 0) {
+            clearInterval(interval);
+            gameOver();
         };
     }, 1000);
 
@@ -152,6 +157,10 @@ function userGuess(event) {
 
 let int = 0;
 function pullNext() {
+    //If there are no more questions to be pulled, game over is triggered
+    if (int > 9) {
+        gameOver();
+    };
     //Sets the content to the new question from an array
     question.textContent =questionArr[int].question;
     item1.textContent = questionArr[int].a;
@@ -181,7 +190,9 @@ function pullNext() {
 };
 
 
+function gameOver() {
 
+};
 
 
 //Event listeners
