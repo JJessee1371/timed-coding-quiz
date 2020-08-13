@@ -94,13 +94,13 @@ let question10 = {
 
 const questionArr = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 
+
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
     //Removes the landing page content
     instructions.remove();
     startButton.remove();
 
-    //Sets the first question of the quiz and the attribute of correct answer
     pullNext();
 
     //Timer setup
@@ -132,7 +132,7 @@ function startTimer() {
 };
 
 
-
+//Actions taken for correct or incorrect answers
 function userGuess(event) {
     if (event.target.matches(".correct")) {
         points++;
@@ -156,7 +156,7 @@ function userGuess(event) {
 };
 
 
-
+//The next question will be displayed to the user
 let int = 0;
 function pullNext() {
     //If there are no more questions to be pulled, game over is triggered
@@ -201,24 +201,39 @@ function gameOver() {
     header.remove();
     userOptions.remove();
 
-    //Create elements where user can submit their initials and score
-    let userInitials = document.createElement("input");
-    let submitBtn = document.createElement("button");
-    let finalScore = document.createElement("h3");
+    //Create elements where user can submit their initials and score and high score is displayed
+    const userInitials = document.createElement("input");
+    const submitBtn = document.createElement("button");
+    const finalScore = document.createElement("h3");
+    const highScore = document.createElement("h3");
+    let bestInitials = document.createElement("p");
+    let bestScore = document.createElement("p"); 
+
     document.body.appendChild(finalScore);
     document.body.appendChild(userInitials);
     document.body.appendChild(submitBtn);
+    document.body.appendChild(highScore);
+    highScore.appendChild(bestInitials);
+    highScore.appendChild(bestScore);
+
     userInitials.setAttribute("placeholder", "User initials");
     finalScore.textContent = "Congratulations! Your final score is " + points; 
     submitBtn.textContent = "Submit!";
+    highScore.textContent = "The current high score is:"
+    
+
+    //Submit button triggers the userInfo function
+    submitBtn.addEventListener("click", userInfo);
 };
 
+//User information is stored in the local storage
 function userInfo() {
-    localStorage.setItem(userInitials);
-    localStorage.setItem(points);
-}
+    localStorage.setItem("initals", userInitials);
+    localStorage.setItem("points", points);
+
+
+};
 
 //Event listeners
 startButton.addEventListener("click", startTimer);
 userOptions.addEventListener("click", userGuess);
-// submitBtn.addEventListener("click", userInfo);
