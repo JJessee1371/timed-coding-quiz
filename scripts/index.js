@@ -94,18 +94,11 @@ const questionArr = [question1, question2, question3, question4, question5, ques
 
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
-
     //Removes the landing page content
     instructions.remove();
     startButton.remove();
 
     //Sets the first question of the quiz and the attribute of correct answer
-    // question.textContent = question1.question;
-    // item1.textContent = question1.a;
-    // item2.textContent = question1.b;
-    // item3.textContent = question1.c;
-    // item4.textContent = question1.d;
-    // item4.setAttribute("class", "correct");
     pullNext();
 
     //Timer setup
@@ -127,7 +120,11 @@ function startTimer() {
             secondsDisplay.textContent = remainderSeconds;
         };
     }, 1000);
+
+    console.log("Timer starts, first question is set");
 };
+
+
 
 function userGuess(event) {
     if (event.target.matches(".correct")) {
@@ -142,40 +139,49 @@ function userGuess(event) {
         pullNext();
     }
     else {
+        arrItems = [item1, item2, item3, item4];
         for (i = 0; i < arrItems.length; i++) {
             arrItems[i].removeAttribute("class");
+        };
     };
 };
 
+
+
+let int = 0;
 function pullNext() {
     //Sets the content to the new question from an array
-    question.textContent =questionArr[i].question;
-    item1.textContent = questionArr[i].a;
-    item2.textContent = questionArr[i].b;
-    item3.textContent = questionArr[i].c;
-    item4.textContent = questionArr[i].d;
+    question.textContent =questionArr[int].question;
+    item1.textContent = questionArr[int].a;
+    item2.textContent = questionArr[int].b;
+    item3.textContent = questionArr[int].c;
+    item4.textContent = questionArr[int].d;
+    
 
     //Correct answers are set for the given question
-    if (question[i] == question2 || question[i] == question4 || question[i] == question9 || question[i] == question10) {
+    if (questionArr[int] === question2 || question[int] === question4 || question[int] === question9 || question[int] === question10) {
         item1.setAttribute("class", "correct");
-    };
+    }
 
-    if (question[i] == question3 || question[i] == question8) {
+    else if (questionArr[int] === question3 || question[int] === question8) {
         item2.setAttribute("class", "correct");
-    };
+    }
 
-    if (question[i] == question6 || question[i] == question7) {
+    else if (questionArr[int] === question6 || question[int] === question7) {
         item3.setAttribute("class", "correct");
-    };
+    }
 
-    if (question[i] == question1 || question[i] == question5) {
+    else if (questionArr[int] === question1 || question[int] === question5) {
         item4.setAtttribute("class", "correct");
-    };
+    }
+
+    int++;
 };
+
+
+
 
 
 //Event listeners
 startButton.addEventListener("click", startTimer);
 userOptions.addEventListener("click", userGuess);
-
-    
