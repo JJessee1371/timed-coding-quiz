@@ -207,7 +207,11 @@ function gameOver() {
     submitBtn.textContent = "Submit!";
 };
 
+function userInfo() {
+    localStorage.setItem(userInitials);
+}
 
 //Event listeners
 startButton.addEventListener("click", startTimer);
 userOptions.addEventListener("click", userGuess);
+submitBtn.addEventListener("click", userInfo);
