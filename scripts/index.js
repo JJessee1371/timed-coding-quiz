@@ -104,7 +104,7 @@ function startTimer() {
     pullNext();
 
     //Timer setup
-    let totalMin = 1;
+    let totalMin = 5;
     let totalSec = totalMin * 60;
     let secondsElapsed = 0;
 
@@ -220,7 +220,7 @@ function gameOver() {
     finalScore.textContent = "Congratulations! Your final score is " + points; 
     submitBtn.textContent = "Submit!";
     highScore.textContent = "The current high score is:"
-    
+
 
     //Submit button triggers the userInfo function
     submitBtn.addEventListener("click", userInfo);

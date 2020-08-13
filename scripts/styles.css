@@ -3,15 +3,31 @@
 }
 
 body {
-    background-color: #d8c9c9;
+    background-color: #81caf5;
 }
 
 h1 {
     font-family: 'Russo One', sans-serif;
     text-align: center;
-    color: #cf0909;
+    color: #f8f8f8;
     background-color: #070000;
     font-family: 'Russo One', sans-serif;
+    padding: 10px;
+    letter-spacing: 2px;
+    
+}
+
+#instructions {
+    font-size: 20px;
+}
+
+#begin {
+    padding: 10px;
+    font-size: 15px;
+    text-align: center;
+    background-color: rgb(19, 36, 192);
+    box-shadow: 10px 10px 20px #494545;
+    color: white;
 }
 
 .timer {
@@ -23,8 +39,9 @@ h1 {
     font-family: 'Russo One', sans-serif;
     width: 15em;
     margin: auto;
-    border-radius: 25px;
+    border-radius: 30px;
     background-color: #070000;
+    box-shadow: 10px 20px 20px #494545;
 }
 
 #minutes-display {
@@ -37,6 +54,7 @@ h1 {
     color: rgb(23, 243, 23);
 }
 
-#button {
-    float: right;
+.hidden {
+    visibility: hidden;
 }
+
