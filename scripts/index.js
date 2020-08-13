@@ -162,6 +162,7 @@ function pullNext() {
     //If there are no more questions to be pulled, game over is triggered
     if (int > 9) {
         gameOver();
+        return;
     };
     //Sets the content to the new question from an array
     question.textContent =questionArr[int].question;
@@ -214,4 +215,4 @@ function userInfo() {
 //Event listeners
 startButton.addEventListener("click", startTimer);
 userOptions.addEventListener("click", userGuess);
-submitBtn.addEventListener("click", userInfo);
+// submitBtn.addEventListener("click", userInfo);
