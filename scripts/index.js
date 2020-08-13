@@ -161,19 +161,19 @@ function pullNext() {
     
 
     //Correct answers are set for the given question
-    if (questionArr[int] === question2 || question[int] === question4 || question[int] === question9 || question[int] === question10) {
+    if (questionArr[int] == question2 || questionArr[int] == question4 || questionArr[int] == question9 || questionArr[int] == question10) {
         item1.setAttribute("class", "correct");
     }
 
-    else if (questionArr[int] === question3 || question[int] === question8) {
+    else if (questionArr[int] == question3 || questionArr[int] == question8) {
         item2.setAttribute("class", "correct");
     }
 
-    else if (questionArr[int] === question6 || question[int] === question7) {
+    else if (questionArr[int] == question6 || questionArr[int] == question7) {
         item3.setAttribute("class", "correct");
     }
 
-    else if (questionArr[int] === question1 || question[int] === question5) {
+    else if (questionArr[int] == question1 || questionArr[int] == question5) {
         item4.setAttribute("class", "correct");
     }
 
