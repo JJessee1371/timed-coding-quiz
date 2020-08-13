@@ -143,6 +143,8 @@ function userGuess(event) {
         for (i = 0; i < arrItems.length; i++) {
             arrItems[i].removeAttribute("class");
         };
+
+        pullNext();
     };
 };
 
@@ -172,7 +174,7 @@ function pullNext() {
     }
 
     else if (questionArr[int] === question1 || question[int] === question5) {
-        item4.setAtttribute("class", "correct");
+        item4.setAttribute("class", "correct");
     }
 
     int++;
