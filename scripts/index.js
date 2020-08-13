@@ -1,9 +1,11 @@
 //Defining varaibles and retrieving desired HTML elements
 const headerMain = document.getElementById("main-header");
 const instructions = document.getElementById("instructions");
+const timer = document.getElementById("timer");
 let minutesDisplay = document.getElementById("minutes-display");
 let secondsDisplay = document.getElementById("seconds-display");
 const startButton = document.getElementById("begin");
+const header = document.getElementById("question");
 const userOptions = document.getElementById("answer-list");
 let points = 0;
 
@@ -102,14 +104,14 @@ function startTimer() {
     pullNext();
 
     //Timer setup
-    let totalMin = 5;
+    let totalMin = 1;
     let totalSec = totalMin * 60;
     let secondsElapsed = 0;
 
     interval = setInterval(function() {
         secondsElapsed++;
         let secondsLeft = totalSec - secondsElapsed;
-        let remainingMin = Math.floor(remainingSec / 60);
+        let remainingMin = Math.floor(secondsLeft / 60);
         let remainderSeconds = secondsLeft % 60;
 
         minutesDisplay.textContent = remainingMin;
@@ -191,7 +193,18 @@ function pullNext() {
 
 
 function gameOver() {
+    //Remove timer and questions from the page
+    minutesDisplay.remove();
+    secondsDisplay.remove();
+    header.remove();
+    userOptions.remove();
 
+    //Create elements where user can submit their initials and score
+    let userInitials = document.createElement("input");
+    let submitBtn = document.createElement("button");
+    document.body.appendChild(userInitials);
+    document.body.appendChild(submitBtn);
+    submitBtn.textContent = "Submit!";
 };
 
 

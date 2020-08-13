@@ -36,3 +36,7 @@ h1 {
     font-size: 2em;
     color: rgb(23, 243, 23);
 }
+
+#button {
+    float: right;
+}
