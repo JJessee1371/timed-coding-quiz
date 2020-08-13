@@ -161,6 +161,7 @@ let int = 0;
 function pullNext() {
     //If there are no more questions to be pulled, game over is triggered
     if (int > 9) {
+        clearInterval(interval);
         gameOver();
         return;
     };
@@ -203,13 +204,18 @@ function gameOver() {
     //Create elements where user can submit their initials and score
     let userInitials = document.createElement("input");
     let submitBtn = document.createElement("button");
+    let finalScore = document.createElement("h3");
+    document.body.appendChild(finalScore);
     document.body.appendChild(userInitials);
     document.body.appendChild(submitBtn);
+    userInitials.setAttribute("placeholder", "User initials");
+    finalScore.textContent = "Congratulations! Your final score is " + points; 
     submitBtn.textContent = "Submit!";
 };
 
 function userInfo() {
     localStorage.setItem(userInitials);
+    localStorage.setItem(points);
 }
 
 //Event listeners
