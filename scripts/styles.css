@@ -97,3 +97,6 @@ button {
     visibility: visible;
 }
 
+.redText {
+    color: rgb(236, 6, 6);
+}

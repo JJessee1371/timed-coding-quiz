@@ -220,6 +220,7 @@ function pullNext() {
 //Create elements where user can submit their initials and score and high score is displayed
 const initialsInput = document.createElement("input");
 const submitBtn = document.createElement("button");
+const divMsg = document.createElement("div");
 const finalScore = document.createElement("h3");
 const highScore = document.createElement("h3");
 let bestInitials = document.createElement("p");
@@ -238,6 +239,7 @@ function gameOver() {
     document.body.appendChild(finalScore);
     document.body.appendChild(initialsInput);
     document.body.appendChild(submitBtn);
+    document.body.appendChild(divMsg);
     document.body.appendChild(highScore);
     highScore.appendChild(bestInitials);
     highScore.appendChild(bestScore);
@@ -260,6 +262,11 @@ function storeInfo() {
     };
     userInfo = JSON.stringify(userInfo);
     localStorage.setItem("userInfo", userInfo);
+
+    if (userInfo.initials === "") {
+        divMsg.textContet = "Please enter your initials";
+        divMsg.setAttribute("class", "redText");
+    };
 
 
 };
