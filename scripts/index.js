@@ -5,7 +5,8 @@ const timer = document.getElementById("timer");
 let minutesDisplay = document.getElementById("minutes-display");
 let secondsDisplay = document.getElementById("seconds-display");
 const startButton = document.getElementById("begin");
-let overall = document.getElementById("centered-content")
+let overall = document.getElementById("centered-content");
+const timerContainer = document.getElementById("timer-container");
 const container = document.getElementById("question-container");
 const header = document.getElementById("question");
 const userOptions = document.getElementById("answer-list");
@@ -96,9 +97,12 @@ let question10 = {
 
 const questionArr = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 
-
+//Hide questions on landing page and set timer color
 header.classList.add("hidden");
 userOptions.classList.add("hidden");
+minutesDisplay.classList.add("greenMin");
+secondsDisplay.classList.add("greenSec");
+
 
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
@@ -125,6 +129,13 @@ function startTimer() {
         let remainderSeconds = secondsLeft % 60;
 
         minutesDisplay.textContent = remainingMin;
+
+        if (remainingMin < 1) {
+            minutesDisplay.classList.remove("greenMin");
+            secondsDisplay.classList.remove("greenSec");
+            minutesDisplay.classList.add("redMin");
+            secondsDisplay.classList.add("redSec");
+        };
 
         if (remainderSeconds < 10) {
             secondsDisplay.textContent = "0" + remainderSeconds;
@@ -214,6 +225,7 @@ let bestScore = document.createElement("p");
 
 function gameOver() {
     //Remove timer and questions from the page
+    timerContainer.classList.add("hidden");
     minutesDisplay.remove();
     secondsDisplay.remove();
     header.remove();
