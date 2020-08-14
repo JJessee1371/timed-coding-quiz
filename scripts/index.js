@@ -124,12 +124,13 @@ function startTimer() {
 
     interval = setInterval(function() {
         secondsElapsed++;
-        let secondsLeft = totalSec - secondsElapsed;
+        window.secondsLeft = totalSec - secondsElapsed;
         let remainingMin = Math.floor(secondsLeft / 60);
         let remainderSeconds = secondsLeft % 60;
 
         minutesDisplay.textContent = remainingMin;
 
+        //Changes timer color for the final minute
         if (remainingMin < 1) {
             minutesDisplay.classList.remove("greenMin");
             secondsDisplay.classList.remove("greenSec");
@@ -173,11 +174,13 @@ function userGuess(event) {
         };
 
         pullNext();
+
+        console.log("User has made a guess")
     };
 };
 
 
-//The next question will be displayed to the user
+//Function displays the next question to the user
 let int = 0;
 function pullNext() {
     //If there are no more questions to be pulled, game over is triggered
@@ -215,7 +218,7 @@ function pullNext() {
 };
 
 //Create elements where user can submit their initials and score and high score is displayed
-const userInitials = document.createElement("input");
+const initialsInput = document.createElement("input");
 const submitBtn = document.createElement("button");
 const finalScore = document.createElement("h3");
 const highScore = document.createElement("h3");
@@ -223,6 +226,7 @@ let bestInitials = document.createElement("p");
 let bestScore = document.createElement("p");
 
 
+//Function sets up the game over page
 function gameOver() {
     //Remove timer and questions from the page
     timerContainer.classList.add("hidden");
@@ -232,26 +236,30 @@ function gameOver() {
     userOptions.remove();
 
     document.body.appendChild(finalScore);
-    document.body.appendChild(userInitials);
+    document.body.appendChild(initialsInput);
     document.body.appendChild(submitBtn);
     document.body.appendChild(highScore);
     highScore.appendChild(bestInitials);
     highScore.appendChild(bestScore);
 
-    userInitials.setAttribute("placeholder", "User initials");
+    initialsInput.setAttribute("placeholder", "User initials");
     finalScore.textContent = "Congratulations! Your final score is " + points; 
     submitBtn.textContent = "Submit!";
     highScore.textContent = "The current high score is:"
 
 
     //Submit button triggers the userInfo function
-    submitBtn.addEventListener("click", userInfo);
+    submitBtn.addEventListener("click", storeInfo);
 };
 
 //User information is stored in the local storage
-function userInfo() {
-    localStorage.setItem("initals", userInitials);
-    localStorage.setItem("points", points);
+function storeInfo() {
+    let userInfo = {
+        initials: initialsInput.value.trim(),
+        score: points,
+    };
+    userInfo = JSON.stringify(userInfo);
+    localStorage.setItem("userInfo", userInfo);
 
 
 };
