@@ -14,7 +14,6 @@ h1 {
     font-family: 'Russo One', sans-serif;
     padding: 10px;
     letter-spacing: 2px;
-    
 }
 
 #instructions {
@@ -54,16 +53,6 @@ button {
     background-color: #070000;
     box-shadow: 10px 20px 20px #494545;
 }
-
-/* #minutes-display {
-    font-size: 7em;
-    color: rgb(23, 243, 23);
-}
-
-#seconds-display {
-    font-size: 4em;
-    color: rgb(23, 243, 23);
-} */
 
 .greenMin {
     font-size: 7em;

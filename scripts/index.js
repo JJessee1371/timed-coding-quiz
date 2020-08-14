@@ -243,8 +243,8 @@ function gameOver() {
     document.body.appendChild(resetBtn);
     document.body.appendChild(divMsg);
     document.body.appendChild(highScore);
-    highScore.appendChild(bestInitials);
-    highScore.appendChild(bestScore);
+    document.body.appendChild(bestInitials);
+    document.body.appendChild(bestScore);
 
     initialsInput.setAttribute("placeholder", "User initials");
     finalScore.textContent = "Congratulations! Your final score is " + points; 
@@ -252,6 +252,11 @@ function gameOver() {
     resetBtn.textContent = "Try again?";
     resetBtn.classList.add("hidden");
     highScore.textContent = "The current high score is:"
+
+    // if(lastUser.initials != null) {
+    // bestInitials.textContent = "Int.: " + lastUser.initials;
+    // bestScore.textContent = "Score: " + lastUser.score;
+    // };
 
 
     //Submit button triggers the userInfo function
@@ -275,6 +280,16 @@ function storeInfo() {
     resetBtn.classList.remove("hidden");
     resetBtn.classList.add("visible");
     resetBtn.addEventListener("click", startTimer);
+    };
+
+    let lastUser = JSON.parse(localStorage.getItem("userInfo"));
+    bestInitials.textContent = "Int.: " + lastUser.initials;
+    bestScore.textContent = "Score: " + lastUser.score;
+    bestScore.setAttribute("value", lastUser.score);
+
+    if (lastUser.score.value > parseInt(bestScore.textContent)) {
+        bestInitials.textContent = "Int.: " + lastUser.initials;
+        bestScore.textContent = "Score: " + lastUser.score;
     };
 };
 
