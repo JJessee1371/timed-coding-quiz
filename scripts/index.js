@@ -5,6 +5,8 @@ const timer = document.getElementById("timer");
 let minutesDisplay = document.getElementById("minutes-display");
 let secondsDisplay = document.getElementById("seconds-display");
 const startButton = document.getElementById("begin");
+let overall = document.getElementById("centered-content")
+const container = document.getElementById("question-container");
 const header = document.getElementById("question");
 const userOptions = document.getElementById("answer-list");
 let points = 0;
@@ -95,11 +97,19 @@ let question10 = {
 const questionArr = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 
 
+header.classList.add("hidden");
+userOptions.classList.add("hidden");
+
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
     //Removes the landing page content
     instructions.remove();
     startButton.remove();
+
+    header.classList.remove("hidden");
+    userOptions.classList.remove("hidden");
+    header.classList.add("visible");
+    userOptions.classList.add("visible");
 
     pullNext();
 
@@ -193,6 +203,14 @@ function pullNext() {
     int++;
 };
 
+//Create elements where user can submit their initials and score and high score is displayed
+const userInitials = document.createElement("input");
+const submitBtn = document.createElement("button");
+const finalScore = document.createElement("h3");
+const highScore = document.createElement("h3");
+let bestInitials = document.createElement("p");
+let bestScore = document.createElement("p");
+
 
 function gameOver() {
     //Remove timer and questions from the page
@@ -200,14 +218,6 @@ function gameOver() {
     secondsDisplay.remove();
     header.remove();
     userOptions.remove();
-
-    //Create elements where user can submit their initials and score and high score is displayed
-    const userInitials = document.createElement("input");
-    const submitBtn = document.createElement("button");
-    const finalScore = document.createElement("h3");
-    const highScore = document.createElement("h3");
-    let bestInitials = document.createElement("p");
-    let bestScore = document.createElement("p"); 
 
     document.body.appendChild(finalScore);
     document.body.appendChild(userInitials);
