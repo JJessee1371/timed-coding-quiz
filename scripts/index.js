@@ -260,15 +260,15 @@ function storeInfo() {
         initials: initialsInput.value.trim(),
         score: points,
     };
-    userInfo = JSON.stringify(userInfo);
-    localStorage.setItem("userInfo", userInfo);
 
     if (userInfo.initials === "") {
-        divMsg.textContet = "Please enter your initials";
+        divMsg.innerText = "Please enter your initials";
         divMsg.setAttribute("class", "redText");
+    }
+    else {
+    userInfo = JSON.stringify(userInfo);
+    localStorage.setItem("userInfo", userInfo);
     };
-
-
 };
 
 //Event listeners
