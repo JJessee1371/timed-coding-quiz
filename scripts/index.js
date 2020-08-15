@@ -11,6 +11,10 @@ const container = document.getElementById("question-container");
 const header = document.getElementById("question");
 const userOptions = document.getElementById("answer-list");
 let points = 0;
+let item1 = document.getElementById("item1");
+let item2 = document.getElementById("item2");
+let item3 = document.getElementById("item3");
+let item4 = document.getElementById("item4");
 
 console.log("Sanity Check");
 
@@ -103,28 +107,33 @@ userOptions.classList.add("hidden");
 minutesDisplay.classList.add("greenMin");
 secondsDisplay.classList.add("greenSec");
 
+const end = document.getElementById("end-display");
+let int = 0;
 
+let secondsElapsed = 0;
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
     //Removes the landing page content
     instructions.remove();
     startButton.remove();
+    end.innerHTML = "";
+    console.log("isrunning");
 
     header.classList.remove("hidden");
     userOptions.classList.remove("hidden");
     header.classList.add("visible");
     userOptions.classList.add("visible");
-
+    int = 0;
     pullNext();
 
     //Timer setup
     let totalMin = 5;
     let totalSec = totalMin * 60;
-    let secondsElapsed = 0;
+    let secondsLeft = "";
 
     interval = setInterval(function() {
         secondsElapsed++;
-        window.secondsLeft = totalSec - secondsElapsed;
+        secondsLeft = totalSec - secondsElapsed;
         let remainingMin = Math.floor(secondsLeft / 60);
         let remainderSeconds = secondsLeft % 60;
 
@@ -168,6 +177,8 @@ function userGuess(event) {
         pullNext();
     }
     else {
+        secondsElapsed = secondsElapsed + 10;
+        console.log(secondsElapsed);
         arrItems = [item1, item2, item3, item4];
         for (i = 0; i < arrItems.length; i++) {
             arrItems[i].removeAttribute("class");
@@ -181,16 +192,16 @@ function userGuess(event) {
 
 
 //Function displays the next question to the user
-let int = 0;
 function pullNext() {
     //If there are no more questions to be pulled, game over is triggered
-    if (int > 9) {
+    if (int >= questionArr.length) {
         clearInterval(interval);
         gameOver();
         return;
     };
+    console.log(int, "question index")
     //Sets the content to the new question from an array
-    question.textContent =questionArr[int].question;
+    header.textContent =questionArr[int].question;
     item1.textContent = questionArr[int].a;
     item2.textContent = questionArr[int].b;
     item3.textContent = questionArr[int].c;
@@ -228,23 +239,25 @@ let bestInitials = document.createElement("p");
 let bestScore = document.createElement("p");
 
 
+
 //Function sets up the game over page
 function gameOver() {
     //Remove timer and questions from the page
     timerContainer.classList.add("hidden");
-    minutesDisplay.remove();
-    secondsDisplay.remove();
+    minutesDisplay.classList.add("hidden");
+    secondsDisplay.classList.add("hidden");
     header.remove();
     userOptions.remove();
+    loadScore(bestInitials, bestScore);
 
-    document.body.appendChild(finalScore);
-    document.body.appendChild(initialsInput);
-    document.body.appendChild(submitBtn);
-    document.body.appendChild(resetBtn);
-    document.body.appendChild(divMsg);
-    document.body.appendChild(highScore);
-    document.body.appendChild(bestInitials);
-    document.body.appendChild(bestScore);
+    end.appendChild(finalScore);
+    end.appendChild(initialsInput);
+    end.appendChild(submitBtn);
+    end.appendChild(resetBtn);
+    end.appendChild(divMsg);
+    end.appendChild(highScore);
+    end.appendChild(bestInitials);
+    end.appendChild(bestScore);
 
     initialsInput.setAttribute("placeholder", "User initials");
     finalScore.textContent = "Congratulations! Your final score is " + points; 
@@ -257,6 +270,7 @@ function gameOver() {
     // bestInitials.textContent = "Int.: " + lastUser.initials;
     // bestScore.textContent = "Score: " + lastUser.score;
     // };
+    
 
 
     //Submit button triggers the userInfo function
@@ -282,16 +296,16 @@ function storeInfo() {
     resetBtn.addEventListener("click", startTimer);
     };
 
+    loadScore(bestInitials, bestScore);
+};
+
+function loadScore(bestInitials, bestScore) {
+    console.log(localStorage.getItem("userInfo"))
     let lastUser = JSON.parse(localStorage.getItem("userInfo"));
     bestInitials.textContent = "Int.: " + lastUser.initials;
     bestScore.textContent = "Score: " + lastUser.score;
     bestScore.setAttribute("value", lastUser.score);
-
-    if (lastUser.score.value > parseInt(bestScore.textContent)) {
-        bestInitials.textContent = "Int.: " + lastUser.initials;
-        bestScore.textContent = "Score: " + lastUser.score;
-    };
-};
+}
 
 //Event listeners
 startButton.addEventListener("click", startTimer);

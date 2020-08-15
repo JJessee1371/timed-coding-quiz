@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,44 +10,48 @@
     <link rel="stylesheet" type="text/css" href="scripts/styles.css">
     <title>Code Quiz</title>
 </head>
+
 <body>
     <!-- Page header -->
     <h1 id="main-header">How will you perform under pressure?</h1>
 
-        <!-- Rules of the game -->
-        <p id="instructions">Welcome to a timed test of your JavaScript knowledge! In the following moments you will be 
-           presented with a set of 10 questions. As soon as you click the start button
-           below, your time of 5 minutes will begin. Each correctly answered question will earn
-           you a point, however, each incorrect answer will reduce your remaining time by 10 seconds. 
-           When time runs out or you answer all of the questions that's game over and you will
-           attach your initials to your score. Good luck!
-        </p>
+    <!-- Rules of the game -->
+    <p id="instructions">Welcome to a timed test of your JavaScript knowledge! In the following moments you will be
+        presented with a set of 10 questions. As soon as you click the start button
+        below, your time of 5 minutes will begin. Each correctly answered question will earn
+        you a point, however, each incorrect answer will reduce your remaining time by 10 seconds.
+        When time runs out or you answer all of the questions that's game over and you will
+        attach your initials to your score. Good luck!
+    </p>
 
-        <!-- Start button -->
-        <button id="begin">Start!</button>
+    <!-- Start button -->
+    <button id="begin">Start!</button>
 
-        <!-- Timer components -->
-        <div id="centered-content">
-            <div id="timer-container" class="timer">
-                <div><span id="minutes-display">5</span></div>
-                <div><span id="seconds-display">00</span></div>
-            </div>
-
-            <!-- Quiz questions -->
-            <div id="question-container">
-                <h3 id="question"></h3>
-                    <ol id="answer-list">
-                        <li><button id="item1"></button></li>
-                        <li><button id="item2"></button></li>
-                        <li><button id="item3"></button></li>
-                        <li><button id="item4"></button></li>
-                    </ol>
-            </div>
+    <!-- Timer components -->
+    <div id="centered-content">
+        <div id="timer-container" class="timer">
+            <div><span id="minutes-display">5</span></div>
+            <div><span id="seconds-display">00</span></div>
         </div>
 
+        <!-- Quiz questions -->
+        <div id="question-container">
+            <h3 id="question"></h3>
+            <ol id="answer-list">
+                <li><button id="item1"></button></li>
+                <li><button id="item2"></button></li>
+                <li><button id="item3"></button></li>
+                <li><button id="item4"></button></li>
+            </ol>
+        </div>
+    </div>
 
-    
+    <div id="end-display">
+        
+    </div>
+
     <!-- Personal JavaScript page -->
     <script src="scripts/index.js"></script>
 </body>
+
 </html>
