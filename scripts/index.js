@@ -109,13 +109,14 @@ secondsDisplay.classList.add("greenSec");
 
 const end = document.getElementById("end-display");
 let int = 0;
-
 let secondsElapsed = 0;
+
+
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
     //Removes the landing page content
-    instructions.remove();
-    startButton.remove();
+    instructions.classList.add("hidden");
+    startButton.classList.add("hidden");
     end.innerHTML = "";
     console.log("isrunning");
 
@@ -123,6 +124,12 @@ function startTimer() {
     userOptions.classList.remove("hidden");
     header.classList.add("visible");
     userOptions.classList.add("visible");
+    timerContainer.classList.remove("hidden");
+    minutesDisplay.classList.remove("hidden");
+    secondsDisplay.classList.remove("hidden");
+    timerContainer.classList.add("visible");
+    minutesDisplay.classList.add("visible");
+    secondsDisplay.classList.add("visible");
     int = 0;
     pullNext();
 
@@ -246,8 +253,8 @@ function gameOver() {
     timerContainer.classList.add("hidden");
     minutesDisplay.classList.add("hidden");
     secondsDisplay.classList.add("hidden");
-    header.remove();
-    userOptions.remove();
+    header.classList.add("hidden");
+    userOptions.classList.add("hidden");
     loadScore(bestInitials, bestScore);
 
     end.appendChild(finalScore);
@@ -265,16 +272,11 @@ function gameOver() {
     resetBtn.textContent = "Try again?";
     resetBtn.classList.add("hidden");
     highScore.textContent = "The current high score is:"
-
-    // if(lastUser.initials != null) {
-    // bestInitials.textContent = "Int.: " + lastUser.initials;
-    // bestScore.textContent = "Score: " + lastUser.score;
-    // };
     
 
 
-    //Submit button triggers the userInfo function
-    submitBtn.addEventListener("click", storeInfo);
+//Submit button triggers the userInfo function
+submitBtn.addEventListener("click", storeInfo);
 };
 
 //User information is stored in the local storage
