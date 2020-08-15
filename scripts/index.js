@@ -180,65 +180,6 @@ function landingSetup() {
     pullNext();
 }
 
-// //Function starts timer and sets up the first question when event listener is triggered
-// function startTimer() {
-//     console.log("over " + over);
-//     //Hides landing page content, sets question, and clears interval
-//     end.innerHTML = "";
-//     instructions.classList.add("hidden");
-//     startButton.classList.add("hidden");
-
-//     hiddenArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
-//     for (i = 0; i < hiddenArr.length; i++) {
-//         hiddenArr[i].classList.remove("hidden");
-//     };
-
-//     visibleArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
-//     for (i = 0; i < visibleArr.length; i++) {
-//         visibleArr[i].classList.add("visible");
-//     };
-    
-//     int = 0;
-//     pullNext();
-
-    
-//     //Timer setup
-//     let totalMin = 5;
-//     let totalSec = totalMin * 60;
-//     let secondsLeft = "";
-
-//     interval = setInterval(function() {
-//         secondsElapsed++;
-//         secondsLeft = totalSec - secondsElapsed;
-//         let remainingMin = Math.floor(secondsLeft / 60);
-//         let remainderSeconds = secondsLeft % 60;
-
-//         minutesDisplay.textContent = remainingMin;
-
-//         //Changes timer color for the final minute
-//         if (remainingMin < 1) {
-//             minutesDisplay.classList.remove("greenMin");
-//             secondsDisplay.classList.remove("greenSec");
-//             minutesDisplay.classList.add("redMin");
-//             secondsDisplay.classList.add("redSec");
-//         };
-
-//         if (remainderSeconds < 10) {
-//             secondsDisplay.textContent = "0" + remainderSeconds;
-//         } else {
-//             secondsDisplay.textContent = remainderSeconds;
-//         };
-
-//         if (secondsLeft <= 0) {
-//             clearInterval(interval);
-//             gameOver();
-
-//         };
-//     }, 1000);
-
-//     console.log("Timer starts, first question is set");
-// };
-
 
 //Actions taken for correct or incorrect answers
 function userGuess(event) {
@@ -305,7 +246,7 @@ function pullNext() {
     int++;
 };
 
-//Create elements where user can submit their initials and score and high score is displayed
+//Create elements for game over page and score submission
 const finalScore = document.createElement("h3");
 const initialsInput = document.createElement("input");
 const submitBtn = document.createElement("button");
@@ -314,7 +255,6 @@ const divMsg = document.createElement("div");
 const highScore = document.createElement("h3");
 let bestInitials = document.createElement("p");
 let bestScore = document.createElement("p");
-
 
 
 //Function sets up the game over page
@@ -363,6 +303,8 @@ function storeInfo() {
     resetBtn.classList.add("visible");
     resetBtn.addEventListener("click", timerBegin);
     };
+
+    initialsInput.value = "";
 
     loadScore(bestInitials, bestScore);
 };
