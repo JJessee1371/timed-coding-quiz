@@ -9,12 +9,12 @@ let overall = document.getElementById("centered-content");
 const timerContainer = document.getElementById("timer-container");
 const container = document.getElementById("question-container");
 const header = document.getElementById("question");
-const userOptions = document.getElementById("answer-list");
-let points = 0;
 let item1 = document.getElementById("item1");
 let item2 = document.getElementById("item2");
 let item3 = document.getElementById("item3");
 let item4 = document.getElementById("item4");
+const userOptions = document.getElementById("answer-list");
+let points = 0;
 
 console.log("Sanity Check");
 
@@ -114,22 +114,32 @@ let secondsElapsed = 0;
 
 //Function starts timer and sets up the first question when event listener is triggered
 function startTimer() {
-    //Removes the landing page content
+    //Hides landing page content and sets questions
+    end.innerHTML = "";
     instructions.classList.add("hidden");
     startButton.classList.add("hidden");
-    end.innerHTML = "";
-    console.log("isrunning");
 
-    header.classList.remove("hidden");
-    userOptions.classList.remove("hidden");
-    header.classList.add("visible");
-    userOptions.classList.add("visible");
-    timerContainer.classList.remove("hidden");
-    minutesDisplay.classList.remove("hidden");
-    secondsDisplay.classList.remove("hidden");
-    timerContainer.classList.add("visible");
-    minutesDisplay.classList.add("visible");
-    secondsDisplay.classList.add("visible");
+    hiddenArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
+    for (i = 0; i < hiddenArr.length; i++) {
+        hiddenArr[i].classList.remove("hidden");
+    };
+
+    visibleArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
+    for (i = 0; i < visibleArr.length; i++) {
+        visibleArr[i].classList.add("visible");
+    };
+    
+    // header.classList.remove("hidden");
+    // userOptions.classList.remove("hidden");
+    // timerContainer.classList.remove("hidden");
+    // minutesDisplay.classList.remove("hidden");
+    // secondsDisplay.classList.remove("hidden");
+
+    // header.classList.add("visible");
+    // userOptions.classList.add("visible");
+    // timerContainer.classList.add("visible");
+    // minutesDisplay.classList.add("visible");
+    // secondsDisplay.classList.add("visible");
     int = 0;
     pullNext();
 
@@ -249,22 +259,18 @@ let bestScore = document.createElement("p");
 
 //Function sets up the game over page
 function gameOver() {
-    //Remove timer and questions from the page
+    //Hide timer and questions from the page
     timerContainer.classList.add("hidden");
     minutesDisplay.classList.add("hidden");
     secondsDisplay.classList.add("hidden");
     header.classList.add("hidden");
     userOptions.classList.add("hidden");
-    loadScore(bestInitials, bestScore);
 
-    end.appendChild(finalScore);
-    end.appendChild(initialsInput);
-    end.appendChild(submitBtn);
-    end.appendChild(resetBtn);
-    end.appendChild(divMsg);
-    end.appendChild(highScore);
-    end.appendChild(bestInitials);
-    end.appendChild(bestScore);
+    //Append the game over elements to the page
+    endArr = [finalScore, initialsInput, submitBtn, resetBtn, divMsg, highScore, bestInitials, bestScore];
+    for (i = 0; i < endArr.length; i++) {
+        end.appendChild(endArr[i]);
+    };
 
     initialsInput.setAttribute("placeholder", "User initials");
     finalScore.textContent = "Congratulations! Your final score is " + points; 
@@ -273,10 +279,8 @@ function gameOver() {
     resetBtn.classList.add("hidden");
     highScore.textContent = "The current high score is:"
     
-
-
-//Submit button triggers the userInfo function
-submitBtn.addEventListener("click", storeInfo);
+    //Submit button triggers the userInfo function
+    submitBtn.addEventListener("click", storeInfo);
 };
 
 //User information is stored in the local storage
@@ -301,13 +305,14 @@ function storeInfo() {
     loadScore(bestInitials, bestScore);
 };
 
+//User information is loaded and saved to the page until the next test
 function loadScore(bestInitials, bestScore) {
     console.log(localStorage.getItem("userInfo"))
     let lastUser = JSON.parse(localStorage.getItem("userInfo"));
     bestInitials.textContent = "Int.: " + lastUser.initials;
     bestScore.textContent = "Score: " + lastUser.score;
     bestScore.setAttribute("value", lastUser.score);
-}
+};
 
 //Event listeners
 startButton.addEventListener("click", startTimer);
