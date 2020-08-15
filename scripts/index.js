@@ -5,7 +5,6 @@ const timer = document.getElementById("timer");
 let minutesDisplay = document.getElementById("minutes-display");
 let secondsDisplay = document.getElementById("seconds-display");
 const startButton = document.getElementById("begin");
-let overall = document.getElementById("centered-content");
 const timerContainer = document.getElementById("timer-container");
 const container = document.getElementById("question-container");
 const header = document.getElementById("question");
@@ -106,47 +105,28 @@ header.classList.add("hidden");
 userOptions.classList.add("hidden");
 minutesDisplay.classList.add("greenMin");
 secondsDisplay.classList.add("greenSec");
+let over = "";
 
 const end = document.getElementById("end-display");
 let int = 0;
 let secondsElapsed = 0;
 
 
-//Function starts timer and sets up the first question when event listener is triggered
-function startTimer() {
-    //Hides landing page content and sets questions
-    end.innerHTML = "";
-    instructions.classList.add("hidden");
-    startButton.classList.add("hidden");
+//Timer global variables
+let totalMin = 5;
+let totalSec = totalMin * 60;
+let secondsLeft = "";
 
-    hiddenArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
-    for (i = 0; i < hiddenArr.length; i++) {
-        hiddenArr[i].classList.remove("hidden");
+function timerBegin() {
+    //Reset points and timer when new round begins
+    points = 0;
+    console.log(over);
+    if (over === 1) {
+        totalMin = 5; 
+        totalSec = totalMin * 60;
+        secondsLeft = "";
+        secondsElapsed = 0;
     };
-
-    visibleArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
-    for (i = 0; i < visibleArr.length; i++) {
-        visibleArr[i].classList.add("visible");
-    };
-    
-    // header.classList.remove("hidden");
-    // userOptions.classList.remove("hidden");
-    // timerContainer.classList.remove("hidden");
-    // minutesDisplay.classList.remove("hidden");
-    // secondsDisplay.classList.remove("hidden");
-
-    // header.classList.add("visible");
-    // userOptions.classList.add("visible");
-    // timerContainer.classList.add("visible");
-    // minutesDisplay.classList.add("visible");
-    // secondsDisplay.classList.add("visible");
-    int = 0;
-    pullNext();
-
-    //Timer setup
-    let totalMin = 5;
-    let totalSec = totalMin * 60;
-    let secondsLeft = "";
 
     interval = setInterval(function() {
         secondsElapsed++;
@@ -173,11 +153,91 @@ function startTimer() {
         if (secondsLeft <= 0) {
             clearInterval(interval);
             gameOver();
+
         };
     }, 1000);
-
-    console.log("Timer starts, first question is set");
+    landingSetup();
 };
+
+//Changes layout to display questions
+function landingSetup() {
+    over = 0;
+    end.innerHTML = "";
+    instructions.classList.add("hidden");
+    startButton.classList.add("hidden");
+
+    hiddenArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
+    for (i = 0; i < hiddenArr.length; i++) {
+        hiddenArr[i].classList.remove("hidden");
+    };
+
+    visibleArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
+    for (i = 0; i < visibleArr.length; i++) {
+        visibleArr[i].classList.add("visible");
+    };
+    
+    int = 0;
+    pullNext();
+}
+
+// //Function starts timer and sets up the first question when event listener is triggered
+// function startTimer() {
+//     console.log("over " + over);
+//     //Hides landing page content, sets question, and clears interval
+//     end.innerHTML = "";
+//     instructions.classList.add("hidden");
+//     startButton.classList.add("hidden");
+
+//     hiddenArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
+//     for (i = 0; i < hiddenArr.length; i++) {
+//         hiddenArr[i].classList.remove("hidden");
+//     };
+
+//     visibleArr = [header, userOptions, timerContainer, minutesDisplay, secondsDisplay];
+//     for (i = 0; i < visibleArr.length; i++) {
+//         visibleArr[i].classList.add("visible");
+//     };
+    
+//     int = 0;
+//     pullNext();
+
+    
+//     //Timer setup
+//     let totalMin = 5;
+//     let totalSec = totalMin * 60;
+//     let secondsLeft = "";
+
+//     interval = setInterval(function() {
+//         secondsElapsed++;
+//         secondsLeft = totalSec - secondsElapsed;
+//         let remainingMin = Math.floor(secondsLeft / 60);
+//         let remainderSeconds = secondsLeft % 60;
+
+//         minutesDisplay.textContent = remainingMin;
+
+//         //Changes timer color for the final minute
+//         if (remainingMin < 1) {
+//             minutesDisplay.classList.remove("greenMin");
+//             secondsDisplay.classList.remove("greenSec");
+//             minutesDisplay.classList.add("redMin");
+//             secondsDisplay.classList.add("redSec");
+//         };
+
+//         if (remainderSeconds < 10) {
+//             secondsDisplay.textContent = "0" + remainderSeconds;
+//         } else {
+//             secondsDisplay.textContent = remainderSeconds;
+//         };
+
+//         if (secondsLeft <= 0) {
+//             clearInterval(interval);
+//             gameOver();
+
+//         };
+//     }, 1000);
+
+//     console.log("Timer starts, first question is set");
+// };
 
 
 //Actions taken for correct or incorrect answers
@@ -281,6 +341,8 @@ function gameOver() {
     
     //Submit button triggers the userInfo function
     submitBtn.addEventListener("click", storeInfo);
+
+    over = 1;
 };
 
 //User information is stored in the local storage
@@ -299,7 +361,7 @@ function storeInfo() {
     localStorage.setItem("userInfo", userInfo);
     resetBtn.classList.remove("hidden");
     resetBtn.classList.add("visible");
-    resetBtn.addEventListener("click", startTimer);
+    resetBtn.addEventListener("click", timerBegin);
     };
 
     loadScore(bestInitials, bestScore);
@@ -315,5 +377,5 @@ function loadScore(bestInitials, bestScore) {
 };
 
 //Event listeners
-startButton.addEventListener("click", startTimer);
+startButton.addEventListener("click", timerBegin);
 userOptions.addEventListener("click", userGuess);
