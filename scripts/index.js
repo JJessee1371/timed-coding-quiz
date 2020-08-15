@@ -15,7 +15,6 @@ let item4 = document.getElementById("item4");
 const userOptions = document.getElementById("answer-list");
 let points = 0;
 
-console.log("Sanity Check");
 
 //Setting variables for each question included in the quiz
 let question1 = {
@@ -100,29 +99,27 @@ let question10 = {
 
 const questionArr = [question1, question2, question3, question4, question5, question6, question7, question8, question9, question10];
 
-//Hide questions on landing page and set timer color
+//Hide questions on landing page, set timer styles, define global variables
 header.classList.add("hidden");
 userOptions.classList.add("hidden");
 minutesDisplay.classList.add("greenMin");
 secondsDisplay.classList.add("greenSec");
 let over = "";
-
 const end = document.getElementById("end-display");
 let int = 0;
 let secondsElapsed = 0;
 
 
 //Timer global variables
-let totalMin = 5;
+let totalMin = 3;
 let totalSec = totalMin * 60;
 let secondsLeft = "";
 
 function timerBegin() {
     //Reset points and timer when new round begins
     points = 0;
-    console.log(over);
     if (over === 1) {
-        totalMin = 5; 
+        totalMin = 3; 
         totalSec = totalMin * 60;
         secondsLeft = "";
         secondsElapsed = 0;
@@ -185,7 +182,6 @@ function landingSetup() {
 function userGuess(event) {
     if (event.target.matches(".correct")) {
         points++;
-        console.log("Points: " + points);
 
         arrItems = [item1, item2, item3, item4];
         for (i = 0; i < arrItems.length; i++) {
@@ -196,15 +192,12 @@ function userGuess(event) {
     }
     else {
         secondsElapsed = secondsElapsed + 10;
-        console.log(secondsElapsed);
         arrItems = [item1, item2, item3, item4];
         for (i = 0; i < arrItems.length; i++) {
             arrItems[i].removeAttribute("class");
         };
 
         pullNext();
-
-        console.log("User has made a guess")
     };
 };
 
@@ -217,7 +210,6 @@ function pullNext() {
         gameOver();
         return;
     };
-    console.log(int, "question index")
     //Sets the content to the new question from an array
     header.textContent =questionArr[int].question;
     item1.textContent = questionArr[int].a;
@@ -225,7 +217,6 @@ function pullNext() {
     item3.textContent = questionArr[int].c;
     item4.textContent = questionArr[int].d;
     
-
     //Correct answers are set for the given question
     if (questionArr[int] == question2 || questionArr[int] == question4 || questionArr[int] == question9 || questionArr[int] == question10) {
         item1.setAttribute("class", "correct");
@@ -277,7 +268,7 @@ function gameOver() {
     submitBtn.textContent = "Submit!";
     resetBtn.textContent = "Try again?";
     resetBtn.classList.add("hidden");
-    highScore.textContent = "The current high score is:"
+    highScore.textContent = "Your current score to beat is:"
     
     //Submit button triggers the userInfo function
     submitBtn.addEventListener("click", storeInfo);
@@ -311,7 +302,6 @@ function storeInfo() {
 
 //User information is loaded and saved to the page until the next test
 function loadScore(bestInitials, bestScore) {
-    console.log(localStorage.getItem("userInfo"))
     let lastUser = JSON.parse(localStorage.getItem("userInfo"));
     bestInitials.textContent = "Int.: " + lastUser.initials;
     bestScore.textContent = "Score: " + lastUser.score;
