@@ -268,7 +268,7 @@ function gameOver() {
     submitBtn.textContent = "Submit!";
     resetBtn.textContent = "Try again?";
     resetBtn.classList.add("hidden");
-    highScore.textContent = "Your current score to beat is:"
+    highScore.textContent = "Your current score to beat is:";
     
     //Submit button triggers the userInfo function
     submitBtn.addEventListener("click", storeInfo);
